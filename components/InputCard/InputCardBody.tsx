@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import { mutateVMix } from "../../lib/api";
 
 import {
   AiOutlinePause,
@@ -59,8 +60,10 @@ const InputCardBody: React.FC<InputCardBodyProps> = ({
             step={1}
             value={position}
             onChange={(e) =>
-              fetch(
-                `http://${address}:${port}/API?Function=SetPosition&Input=${id}&Value=${e.target.value}`
+              mutateVMix(
+                address,
+                port,
+                `Function=SetPosition&Input=${id}&Value=${e.target.value}`
               )
             }
             className="w-full h-2 p-0 transition-all bg-gray-200 bg-no-repeat appearance-none cursor-pointer bg-gradient-to-r from-sky-500 to-sky-500"

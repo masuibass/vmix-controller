@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import { mutateVMix } from "../../lib/api";
 
 type VolumeProps = {
   id: string;
@@ -27,8 +28,10 @@ const Volume: React.FC<VolumeProps> = React.memo(function Volume({
           step={1}
           value={fader}
           onChange={(e) =>
-            fetch(
-              `http://${address}:${port}/API?Function=SetVolume&Input=${id}&Value=${e.target.value}`
+            mutateVMix(
+              address,
+              port,
+              `Function=SetVolume&Input=${id}&Value=${e.target.value}`
             )
           }
           className="absolute z-20 w-48 h-2 p-0 transition-all origin-top-left -rotate-90 translate-y-48 bg-gray-200 bg-no-repeat appearance-none cursor-pointer bg-gradient-to-r from-sky-500 to-sky-500"
