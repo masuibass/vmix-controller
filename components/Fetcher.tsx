@@ -15,17 +15,17 @@ const Fetcher: React.FC<Props> = () => {
   );
   const dispatch = useDispatch();
 
-  const fetcher = async () => {
-    try {
-      const xml = await fetchVMix(address, port);
-      const json = xmlParser.parse(xml);
-      dispatch(set(json));
-    } catch (error) {
-      dispatch(disconnect({ error }));
-    }
-  };
-
   useEffect(() => {
+    const fetcher = async () => {
+      try {
+        const xml = await fetchVMix(address, port);
+        const json = xmlParser.parse(xml);
+        dispatch(set(json));
+      } catch (error) {
+        dispatch(disconnect({ error }));
+      }
+    };
+
     let interval: NodeJS.Timer | undefined;
     if (connection) {
       (async () => {
@@ -42,7 +42,7 @@ const Fetcher: React.FC<Props> = () => {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [connection]);
+  }, [connection, address, port, dispatch]);
 
   return <></>;
 };
