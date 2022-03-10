@@ -6,4 +6,4 @@ export const xmlParser = new XMLParser({
 });
 
 export const fetchVMix = async (address: string, port: number) =>
-  fetch(`http://${address}:${port}/API`).then((res) => res.text());
+  fetch(`/api/vmix?address=${address}&port=${port}`).then((res) => res.text());
