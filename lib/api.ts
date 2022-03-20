@@ -6,14 +6,19 @@ export const xmlParser = new XMLParser({
 });
 
 export const fetchVMix = async (address: string, port: number) =>
-  fetch(`/api/vmix?address=${address}&port=${port}`).then((res) => res.text());
+  fetch(
+    `${process.env.NEXT_PUBLIC_PROXY_URL}?url=${encodeURIComponent(
+      `http://${address}:${port}/API/`
+    )}`
+  ).then((res) => res.text());
 
 export const mutateVMix = async (
   address: string,
   port: number,
   queryString: string
 ) =>
-  fetch(`/api/vmix?address=${address}&port=${port}`, {
-    method: "post",
-    body: JSON.stringify({ queryString }),
-  });
+  fetch(
+    `${process.env.NEXT_PUBLIC_PROXY_URL}?url=${encodeURIComponent(
+      `http://${address}:${port}/API/?${queryString}`
+    )}`
+  );
