@@ -38,3 +38,9 @@ yarn-error.log*
 *.tsbuildinfo
 
 .vscode
+
+# gcloud app setting
+app.yaml
+
+# proxy local .env
+proxy/.env
