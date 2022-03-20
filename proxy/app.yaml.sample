@@ -1,0 +1,5 @@
+runtime: go116
+
+env_variables:
+  CONTROLLER_URL: "https://your.app.url"
+  LOCAL_CONTROLLER_URL: "http://localhost:3000"
